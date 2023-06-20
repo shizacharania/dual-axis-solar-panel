@@ -1,11 +1,10 @@
 //L293D
 //Motor A
-const int motorPin1  = 5;  // Pin 14 of L293
-const int motorPin2  = 6;  // Pin 10 of L293
+const int motorPin1  = 5;  
+const int motorPin2  = 6;  
 //Motor B
-const int motorPin3  = 10; // Pin  7 of L293
-const int motorPin4  = 9;  // Pin  2 of L293
-
+const int motorPin3  = 10; 
+const int motorPin4  = 9; 
 
 int north;
 int south;
@@ -15,9 +14,6 @@ int min_ldr1;
 int min_ldr2;
 int min_ldr;
 int position = 0;
-
-
-
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,9 +25,6 @@ void setup() {
  
 }
 
-
-
-
 void loop() {
   // put your main code here, to run repeatedly:
   //Readings on each LDR's respective to their position on the solar panel
@@ -42,7 +35,6 @@ void loop() {
 
 
   // ldrs = {north, south, west, east};
-
 
   int west_east = abs(west - east);
   int west_north = abs(west - north);
@@ -74,6 +66,7 @@ void loop() {
     min_ldr1 = min(north, south);
     min_ldr2 = min(east, west);
     min_ldr = min(min_ldr1, min_ldr2);
+    
     if (min_ldr == north) {
       Serial.println("POINTING AT NORTH");
       digitalWrite(motorPin1, LOW);
@@ -86,6 +79,7 @@ void loop() {
       digitalWrite(motorPin3, LOW);
       digitalWrite(motorPin4, LOW);
     }
+    
     if (min_ldr == south) {
       Serial.println("POINTING AT SOUTH");
       digitalWrite(motorPin1, LOW);
@@ -98,6 +92,7 @@ void loop() {
       digitalWrite(motorPin3, LOW);
       digitalWrite(motorPin4, LOW);
     }
+    
     if (min_ldr == west) {
       Serial.println("POINTING AT WEST");
       digitalWrite(motorPin1, HIGH);
@@ -120,6 +115,7 @@ void loop() {
       digitalWrite(motorPin3, LOW);
       digitalWrite(motorPin4, LOW);
     }
+    
     if (min_ldr == east) {
       Serial.println("POINTING AT EAST");
       digitalWrite(motorPin1, LOW);
